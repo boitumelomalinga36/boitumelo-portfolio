@@ -3196,11 +3196,10 @@ img.u-pull-left {
 }
 
 .intro-content {
-    min-height      : calc(25.5 * var(--space));
+    height: auto; /* let content define height */
     justify-content : center;
     align-items     : center;
-    padding-top     : calc(16vh + var(--header-height));
-    padding-bottom  : var(--vspace-3);
+    padding-top: calc(6vh + var(--header-height)); /* less top padding */
 }
 
 .intro-content .text-huge-title {
