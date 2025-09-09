@@ -301,6 +301,62 @@
     }
 }
 
+/* ------------------------------------------------------------------- 
+ * ## project-specific styles
+ * ------------------------------------------------------------------- */
+.projects-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    padding-left: 50px;  /* add space from left */
+    padding-right: 20px; /* optional, keep spacing balanced */
+}
+
+
+
+.project-card {
+    display: block;
+    width: 300px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.project-card__image {
+    width: 100%;
+    height: 200px; /* reduce height */
+    object-fit: cover;
+    display: block;     /* removes inline spacing below image */
+
+}
+
+.project-card__info {
+    padding: 8px 15px 12px; /* top right/left bottom */
+}
+
+
+.project-card__info h3 {
+    margin-top: 0;     /* remove extra space above */
+    margin-bottom: 5px; /* keep a small gap below */
+    font-size: 1.2rem;
+}
+.project-card__info span,
+.project-card__info p {
+    letter-spacing: normal;   /* remove extra spacing */
+    word-spacing: normal;     /* normalize spacing */
+    line-height: 1.4;         /* tighter line height */
+}
+
+
 
 
 /* ====================================================================
@@ -3410,7 +3466,7 @@ img.u-pull-left {
 
 .about-info__text {
     padding     : var(--vspace-3_5) 10vw var(--vspace-2) 0;
-    margin-left : -4rem;
+    margin-left : 8rem;
 }
 
 .about-info__text .text-pretitle {
@@ -3579,7 +3635,6 @@ img.u-pull-left {
 
 .s-works {
     padding-top    : var(--vspace-2);
-    padding-bottom : var(--vspace-2_5);
 }
 
 .s-works .h1 {
@@ -3743,89 +3798,83 @@ img.u-pull-left {
 }
 
 /* ------------------------------------------------------------------- 
- * ## modal popup
+ * ## showcase projects (inline modal-style cards)
  * ------------------------------------------------------------------- */
-.modal-popup {
-    max-width        : 680px;
-    background-color : white;
-    font-size        : calc(var(--text-size) * 0.9447);
-    line-height      : var(--vspace-0_875);
-    color            : rgba(0, 0, 0, 0.75);
-    overflow-y       : auto;
-    position         : relative;
+.s-showcase {
+    padding: 60px 100px; /* top/bottom 60px, left/right 100px */
 }
 
-.modal-popup img {
-    margin-bottom : var(--vspace-0_75);
+.showcase-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start; /* cards align left */
 }
 
-.modal-popup h5 {
-    font-family   : var(--font-1);
-    font-size     : var(--text-size);
-    line-height   : var(--vspace-1);
-    font-weight   : 500;
-    margin-top    : 0;
-    margin-bottom : var(--vspace-0_25);
-    color         : black;
+.showcase-card {
+    width: 280px;  /* fixed card width */
+    background: white;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    color: rgba(0,0,0,0.75);
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.modal-popup__desc {
-    padding : 0 var(--vspace-1_25) var(--vspace-0_25);
+.showcase-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
-.modal-popup__cat {
-    list-style   : none;
-    margin-left  : 0;
-    font-size    : var(--text-sm);
-    line-height  : var(--vspace-0_5);
-    color        : rgba(0, 0, 0, 0.6);
-    padding-left : calc(0.875 * var(--space));
-    position     : relative;
+.showcase-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    display: block;
+    margin-bottom: 10px;
 }
 
-.modal-popup__cat::before {
-    content             : "";
-    display             : block;
-    height              : calc(0.625 * var(--space));
-    width               : calc(0.625 * var(--space));
-    background-repeat   : no-repeat;
-    background-position : center;
-    background-size     : contain;
-    background-image    : url(../images/icons/icon-tag.svg);
-    position            : absolute;
-    left                : 0;
-    top                 : -0.15em;
+.showcase-card__desc {
+    padding: 10px 15px;
 }
 
-.modal-popup__cat li {
-    display      : inline;
-    padding-left : 0;
+.showcase-card__desc h5 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    color: black;
 }
 
-.modal-popup__cat li::after {
-    content : ", ";
+.showcase-card__desc p {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+    color: rgba(0,0,0,0.75);
 }
 
-.modal-popup__cat li:last-child::after {
-    display : none;
+.showcase-card__details {
+    display: inline-block;
+    text-decoration: none;
+    background: rgba(0,0,0,0.3);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    transition: 0.2s;
+    margin: 0 0 10px 15px;
 }
 
-.modal-popup__details {
-    background-color : rgba(0, 0, 0, 0.3);
-    font-size        : var(--text-xs);
-    line-height      : var(--vspace-1_25);
-    color            : white;
-    padding          : 0 1.2rem;
-    position         : absolute;
-    top              : var(--vspace-1);
-    left             : var(--vspace-1);
+.showcase-card__details:hover {
+    background-color: var(--color-body);
+    color: white;
 }
 
-.modal-popup__details:focus,
-.modal-popup__details:hover {
-    background-color : var(--color-body);
-    color            : white;
+.text-pretitle {
+    margin-bottom: 30px;
+    opacity: 1 !important;
+    transform: none !important;
 }
+
 
 /* ------------------------------------------------------------------- 
  * ## testimonials
@@ -3947,7 +3996,7 @@ img.u-pull-left {
 @media screen and (max-width: 800px) {
     .s-works {
         padding-top    : var(--vspace-1);
-        padding-bottom : var(--vspace-3);
+        padding-bottom : var(--vspace-1);
     }
 }
 
