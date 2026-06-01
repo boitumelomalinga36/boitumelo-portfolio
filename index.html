@@ -1,524 +1,192 @@
 <!DOCTYPE html>
-<html class="no-js ss-preload" lang="en">
-
+<html lang="en">
 <head>
-
-    <!--- basic page needs
-        ================================================== -->
-    <meta charset="utf-8">
-    <title>Boitumelo Malinga</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- mobile specific metas
-        ================================================== -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSS
-        ================================================== -->
-    <link rel="stylesheet" href="css/vendor.css">
-    <link rel="stylesheet" href="css/styles.css">
-
-    <!-- favicons
-        ================================================== -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="site.webmanifest">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portfolio of Boitumelo Malinga: Business Analyst, Software Developer and Data Analytics Graduate." />
+  <title>Boitumelo Malinga | Portfolio</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
+<body>
+  <div class="cursor-glow"></div>
+  <header class="topbar" id="top">
+    <nav class="nav wrap">
+      <a class="logo" href="#top">Boitumelo Malinga</a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">LinkedIn</a>
+      </div>
+    </nav>
+  </header>
 
-<body id="top">
-
-
-    <!-- # preloader
-        ================================================== -->
-    <div id="preloader">
-        <div id="loader">
+  <main>
+    <section class="hero wrap">
+      <div class="hero-photo reveal">
+        <img src="images/about-photo.jpg" alt="Boitumelo Malinga portrait" />
+      </div>
+      <div class="hero-copy reveal">
+        <p class="small-label">Business Analyst • Software Developer • Data Analyst </p>
+        <h1>Hi, I’m <span>Boitumelo Malinga.</span></h1>
+        <p class="lead">I analyse business problems and build practical technology solutions.</p>
+        <p class="intro">My portfolio shows how I move from problem understanding, requirements and process thinking into working systems built with tools such as Laravel, Flutter, MySQL and modern front-end technologies.</p>
+        <div class="hero-actions">
+          <a class="button" href="#projects">View projects</a>
+          <a class="button secondary" href="https://www.linkedin.com/in/boitumelo-malinga-a05042226" target="_blank" rel="noopener">LinkedIn</a>
         </div>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="wrap about-layout">
+        <div class="section-title reveal">
+          <p class="small-label">About Me</p>
+          <h2>Business thinking with technical execution.</h2>
+        </div>
+        <div class="about-panel reveal">
+          <p>I am a Business Analysis and Technology professional with hands-on experience in software development, technical documentation, stakeholder communication and systems thinking.</p>
+          <p>I completed an Advanced Diploma in Business Analysis and a Diploma in Information Technology: Software Development with Distinction. I am currently completing a Postgraduate Diploma in Data Analytics.</p>
+          <p>I enjoy working where business and technology meet: understanding what people need, documenting the problem clearly, designing better workflows and building systems that solve the problem properly.</p>
+        </div>
+        <div class="value-grid">
+          <div class="value-card reveal"><strong>01</strong><h3>Analyse</h3><p>Understand the business problem, users, process and requirements.</p></div>
+          <div class="value-card reveal"><strong>02</strong><h3>Design</h3><p>Map workflows, define user stories and shape the solution.</p></div>
+          <div class="value-card reveal"><strong>03</strong><h3>Build</h3><p>Use technology to turn the solution into a working digital product.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="small-label">Selected Projects</p>
+          <h2>Projects with clear business problems and technology solutions.</h2>
+        </div>
+
+        <div class="project-grid">
+          <a class="project-card reveal" href="https://github.com/boitumelomalinga36/laravel-payfast-checkout" target="_blank" rel="noopener">
+            <div class="project-top"><span>Laravel • Payments • API</span><b>Repo →</b></div>
+            <h3>PayFast Laravel Payment Integration</h3>
+            <h4>Problem</h4>
+            <p>Small businesses need secure online payments, but payment integrations often become difficult to reuse across multiple websites and booking platforms.</p>
+            <h4>Technology Solution</h4>
+            <p>I designed a reusable Laravel PayFast integration for hosted checkout, tokenisation, recurring billing, webhook handling and transaction verification.</p>
+            <div class="stack">Laravel 8 • PHP • MySQL • PayFast API • Webhooks • Postman</div>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/boitumelomalinga36/quote-invoice-generator" target="_blank" rel="noopener">
+            <div class="project-top"><span>Laravel • Business Workflow</span><b>Repo →</b></div>
+            <h3>Quote & Invoice Management System</h3>
+            <h4>Problem</h4>
+            <p>Manual quotation and invoicing creates delays, lost records, inconsistent pricing and poor visibility over business activity.</p>
+            <h4>Technology Solution</h4>
+            <p>I built a full-stack system to create quotes and invoices, manage client records, secure user access and improve admin control through structured dashboards.</p>
+            <div class="stack">Laravel • PHP • MySQL • JWT Auth • Email Automation • Dashboards</div>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/boitumelomalinga36/stokvel-dashboard" target="_blank" rel="noopener">
+            <div class="project-top"><span>Finance Workflow • Laravel</span><b>Repo →</b></div>
+            <h3>Stokvel Management System</h3>
+            <h4>Problem</h4>
+            <p>Stokvels often depend on spreadsheets, WhatsApp updates and manual calculations, making it hard to track member payments, arrears and balances accurately.</p>
+            <h4>Technology Solution</h4>
+            <p>I designed a digital contribution management system for members, monthly expected contributions, actual payments, arrears, balances, dashboards and audit logging.</p>
+            <div class="stack">Laravel • MySQL • CRUD • Dashboard Logic • Audit Logs • Finance Rules</div>
+          </a>
+
+          <a class="project-card reveal" href="https://github.com/boitumelomalinga36/StayNest-Laravel-Booking-Platform" target="_blank" rel="noopener">
+            <div class="project-top"><span>Booking Platform • Property Tech</span><b>Repo →</b></div>
+            <h3>StayNest Booking Platform</h3>
+            <h4>Problem</h4>
+            <p>Short-stay accommodation businesses need a simple way to present spaces, manage enquiries and reduce back-and-forth communication with customers.</p>
+            <h4>Technology Solution</h4>
+            <p>I created a clean booking platform structure where users can view stays, understand property details and submit booking requests through a responsive interface.</p>
+            <div class="stack">Laravel • Front-end UI • MySQL • Booking Workflows • Responsive Design</div>
+          </a>
+
+          <a class="project-card reveal" rel="noopener">
+            <div class="project-top"><span>Mobile App • Flutter</span></div>
+            <h3>Carwash Booking Mobile Application</h3>
+            <h4>Problem</h4>
+            <p>Carwash customers often need to call, message or arrive physically to check availability, which creates scheduling delays and a poor customer experience.</p>
+            <h4>Technology Solution</h4>
+            <p>I developed a cross-platform mobile booking concept for in-store and mobile carwash services, focused on clean navigation and a practical booking workflow.</p>
+            <div class="stack">Flutter • Dart • Mobile UI • Booking Workflow • UX Design</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section experience" id="experience">
+      <div class="wrap split-section">
+        <div class="section-title reveal">
+          <p class="small-label">Experience</p>
+          <h2>Professional experience</h2>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item reveal">
+            <span>Feb 2025 – Present</span>
+            <h3>Part-Time Lecturer — Rosebank International</h3>
+            <p>Deliver Business Information Systems and Technical Communication modules while strengthening facilitation, documentation, stakeholder communication and technology-focused problem-solving skills.</p>
+          </div>
+          <div class="timeline-item reveal">
+            <span>Sep 2023 – Nov 2024</span>
+            <h3>Software Developer Intern — Rocvest</h3>
+            <p>Worked on web and mobile applications, APIs, databases and Agile delivery while translating business and system requirements into working software solutions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section education" id="education">
+      <div class="wrap split-section">
+        <div class="section-title reveal">
+          <p class="small-label">Education</p>
+          <h2>Academic background</h2>
+        </div>
+        <div class="education-grid">
+          <div class="edu-card reveal"><span>2026 – Present</span><h3>Postgraduate Diploma in Data Analytics</h3><p>Rosebank College</p><p>Business intelligence, statistical analysis, data visualisation and data-driven decision-making.</p></div>
+          <div class="edu-card reveal"><span>2024</span><h3>Advanced Diploma in Business Analysis</h3><p>Rhodes University</p><p>Requirements engineering, stakeholder management, process modelling, systems analysis and solution design.</p></div>
+          <div class="edu-card reveal"><span>2021 – 2023</span><h3>Diploma in IT: Software Development</h3><p>Rosebank College • Distinction</p><p>Programming, databases, software development, testing and IT project implementation.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section skills" id="skills">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="small-label">Skills</p>
+          <h2>Skills I use to deliver solutions.</h2>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card reveal"><h3>Business Analysis</h3><p>Requirements gathering, stakeholder analysis, process mapping, BPMN, BRD documentation, user stories, UAT support and solution design.</p></div>
+          <div class="skill-card reveal"><h3>Software Development</h3><p>Laravel, PHP, JavaScript, Vue.js, Angular, NestJS, Flutter, Dart, C#, ASP.NET MVC, REST APIs and database-backed applications.</p></div>
+          <div class="skill-card reveal"><h3>Data & Tools</h3><p>SQL, MySQL, PostgreSQL, SQL Server, Python, Jupyter Notebook, GitHub, Postman, Swagger, VS Code, Excel and BI concepts.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact">
+      <div class="wrap contact-card reveal">
+        <p class="small-label">Connect</p>
+        <h2>Let’s connect on LinkedIn.</h2>
+        <p>This portfolio is my digital CV. LinkedIn is the best place to reach me professionally.</p>
+        <a class="button" href="https://www.linkedin.com/in/boitumelo-malinga-a05042226" target="_blank" rel="noopener">Open LinkedIn Profile</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>© 2026 Boitumelo Malinga</p>
+<a href="#">Back to top ↑</a>
     </div>
+  </footer>
 
-
-    <!-- # page wrap
-        ================================================== -->
-    <div class="s-pagewrap">
-
-        <div class="circles">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-
-        <!-- ## site header 
-            ================================================== -->
-        <header class="s-header">
-
-            <div class="header-mobile">
-                <span class="mobile-home-link"><a href="index.html">Boitumelo.</a></span>
-                <a class="mobile-menu-toggle" href="#0"><span>Menu</span></a>
-            </div>
-
-            <div class="row wide main-nav-wrap">
-                <nav class="column lg-12 main-nav">
-                    <ul>
-                        <li><a href="index.html" class="home-link">Boitumelo.</a></li>
-                        <li class="current"><a href="#intro" class="smoothscroll">Intro</a></li>
-                        <li><a href="#about" class="smoothscroll">About</a></li>
-                        <li><a href="#works" class="smoothscroll">Skills</a></li>
-                        <li><a href="#showcase-projects" class="smoothscroll">Projects</a></li>
-                        <li><a href="#contact" class="smoothscroll">Say Hello</a></li>
-                    </ul>
-                </nav>
-            </div>
-
-        </header> <!-- end s-header -->
-
-
-        <!-- ## main content
-            ==================================================- -->
-        <main class="s-content">
-
-
-            <!-- ### intro
-                ================================================== -->
-            <section id="intro" class="s-intro target-section">
-
-                <div class="row intro-content wide">
-
-                    <div class="column">
-                        <div class="text-pretitle with-line">
-                            System.out.println("Hello, world!")
-                        </div>
-
-                        <h1 class="text-huge-title">
-                            Home of <br>
-                            a Fullstack Developer
-                        </h1>
-                    </div>
-
-                </div> <!-- end intro content -->
-
-                <a href="#about" class="intro-scrolldown smoothscroll">
-                    <svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                        fill-rule="evenodd" clip-rule="evenodd">
-                        <path
-                            d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z" />
-                    </svg>
-                </a>
-
-            </section> <!-- end s-intro -->
-
-
-            <!-- ### about
-                ================================================== -->
-            <section id="about" class="s-about target-section">
-
-
-                <div class="row about-info wide" data-animate-block>
-                    <div>
-                        <div class="about-info__text">
-                            <div class="column lg-6 md-12 about-info__pic-block">
-                                <img src="images/about-photo.jpg"
-                                    srcset="images/about-photo.jpg 1x, images/about-photo@2x.jpg 2x" alt=""
-                                    class="about-info__pic" data-animate-el>
-                            </div>
-                            <br>
-                            <h2 class="text-pretitle with-line" data-animate-el>
-                                About
-                            </h2>
-                            <p class="attention-getter" data-animate-el>
-                                Hello! I'm Boitumelo Malinga, a young passionate Junior Software Developer. My journey
-                                in
-                                tech is driven by a relentless
-                                passion for learning and a commitment to mastering Software
-                                Development. I thrive on understanding the intricate needs of businesses, analyzing
-                                their processes, and crafting technical solutions that align with their objectives. This
-                                unique blend of technical and analytical skills allows me to bridge the gap between code
-                                and business goals, making me a valuable asset. Whether it's developing robust
-                                applications, or diving
-                                into the details of business analysis, I'm dedicated to delivering impactful solutions.
-                            </p>
-
-                        </div>
-                    </div>
-                </div> <!-- about-info -->
-
-                <div class="row about-timelines" data-animate-block>
-
-                    <div class="column lg-6 tab-12">
-
-                        <h2 class="text-pretitle" data-animate-el>
-                            Experience
-                        </h2>
-
-                        <div class="timeline" data-animate-el>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">Rosebank College</h4>
-                                    <h5 class="timeline__meta">Part-Time Lecturer</h5>
-                                    <p class="timeline__timeframe">Feb 2025 – Present</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>Deliver engaging lectures in professional communication and business technology,
-                                        guiding students in technical communication, report writing, and professional
-                                        correspondence. Provide practical insights into business information systems and
-                                        their application in improving processes and decision-making. Design course
-                                        materials that connect theory to real-world scenarios, assess student
-                                        performance through assignments and exams, and mentor students to prepare them
-                                        for technical and business challenges.</p>
-                                </div>
-                            </div>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">ROCVEST SYSTEMS</h4>
-                                    <h5 class="timeline__meta">Junior Software Developer</h5>
-                                    <p class="timeline__timeframe">Aug 2023 – Nov 2024</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <ul>
-                                        <li>Contributed to <strong>full-stack development</strong>, delivering both web
-                                            and mobile applications from concept to deployment.</li>
-                                        <li>Developed <strong>cross-platform mobile apps</strong> with <strong>Flutter
-                                                (Dart)</strong>, ensuring seamless performance on iOS and Android.</li>
-                                        <li>Built <strong>responsive web applications</strong> using <strong>HTML,
-                                                Vue.js, and Angular</strong> with a focus on scalability and user
-                                            experience.</li>
-                                        <li>Implemented <strong>backend solutions</strong> using
-                                            <strong>Laravel</strong> and <strong>NestJS</strong>, integrating with
-                                            <strong>MySQL databases</strong> for data management.
-                                        </li>
-                                        <li>Performed <strong>testing, debugging, and optimization</strong> to maintain
-                                            high standards of quality, reliability, and performance.</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div> <!-- end timeline -->
-
-                    </div> <!-- end column -->
-
-                    <div class="column lg-6 tab-12">
-
-                        <h2 class="text-pretitle" data-animate-el>
-                            Education
-                        </h2>
-
-                        <div class="timeline" data-animate-el>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">Rosebank College</h3>
-                                        <h5 class="timeline__meta">Diploma In Information Technology In Software
-                                            Development</h5>
-                                        <p class="timeline__timeframe">November 2023</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>I completed a three-year Diploma in Information Technology in Software
-                                        Development at Rosebank College, where I gained a solid foundation in
-                                        programming fundamentals and learned how to apply them to real-world solutions.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="timeline__block">
-                                <div class="timeline__bullet"></div>
-                                <div class="timeline__header">
-                                    <h4 class="timeline__title">Rhodes University</h4>
-                                    <h5 class="timeline__meta">Advanced Diploma In Business Analysis</h5>
-                                    <p class="timeline__timeframe">November 2024</p>
-                                </div>
-                                <div class="timeline__desc">
-                                    <p>I completed an Advanced Diploma at Rhodes University, where I was
-                                        equipped with the skills to strategically, operationally, and critically
-                                        address key methods, processes, systems, and techniques essential for driving
-                                        sustainable business performance.</p>
-                                </div>
-                            </div>
-
-                        </div> <!-- end timeline -->
-
-                    </div> <!-- end column -->
-
-
-                </div> <!-- end about-timelines -->
-
-            </section> <!-- end s-about -->
-
-
-            <!-- ### Skills
-                ================================================== -->
-            <section id="works" class="s-works target-section">
-
-                <div class="row works-portfolio">
-
-                    <div class="column lg-12" data-animate-block>
-
-                        <h2 class="text-pretitle" data-animate-el>
-                            My Skills
-                        </h2>
-                        <p class="h1" data-animate-el>
-                            Here are a few programming skills from my development stack!
-                        </p>
-
-                        <ul class="folio-list row block-lg-one-half block-stack-on-1000">
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/fuji.jpg"
-                                            srcset="images/portfolio/fuji.jpg 1x, images/portfolio/fuji@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Front-End
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            HTML5.
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/lamp.jpg"
-                                            srcset="images/portfolio/lamp.jpg 1x, images/portfolio/lamp@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Front-End
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Flutter - Mobile Development.
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/rucksack.jpg"
-                                            srcset="images/portfolio/rucksack.jpg 1x, images/portfolio/rucksack@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Front-End
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Angular.
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/skaterboy.jpg"
-                                            srcset="images/portfolio/skaterboy.jpg 1x, images/portfolio/skaterboy@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Back-End
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            C#.
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/sanddunes.jpg"
-                                            srcset="images/portfolio/sanddunes.jpg 1x, images/portfolio/sanddunes@2x.jpg 2x"
-                                            alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Back-End
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            NestJS.
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/958072.png" alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Back-End
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            Laravel.
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/minimalismo.jpg" alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Back-End
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            MySQL.
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                            <li class="folio-list__item column" data-animate-el>
-                                <a class="folio-list__item-link">
-                                    <div class="folio-list__item-pic">
-                                        <img src="images/portfolio/social-default-image.png" alt="">
-                                    </div>
-
-                                    <div class="folio-list__item-text">
-                                        <div class="folio-list__item-cat">
-                                            Analytics
-                                        </div>
-                                        <div class="folio-list__item-title">
-                                            PowerBi.
-                                        </div>
-                                    </div>
-                                </a>
-                            </li> <!--end folio-list__item -->
-
-                        </ul> <!-- end folio-list -->
-
-                    </div> <!-- end column -->
-
-                </div> <!-- end works-portfolio -->
-            </section> <!-- end s-works -->
-
-            <!-- ### Projects
-                ================================================== -->
-            <section id="showcase-projects" class="s-showcase">
-
-                <h2 class="text-pretitle" data-animate-el>
-                    Project Showcase
-                </h2>
-
-                <div class="showcase-container">
-
-                    <!-- Project Card 1 -->
-                    <div class="showcase-card">
-                        <img src="images/PAYFASTLOGO.jpg" alt="PayFast Checkout Module">
-                        <div class="showcase-card__desc">
-                            <h5>PayFast Checkout Integration</h5>
-                            <p>I am currently working on this secure and responsive payment module built using Laravel
-                                8, chosen
-                                specifically for compatibility with Xneelo shared hosting, which currently supports
-                                Laravel 8. The module integrates the PayFast payment gateway, offering seamless
-                                transaction processing while leveraging Xneelo’s affordable and reliable hosting for web
-                                applications.</p>
-                        </div>
-                        <a href="https://github.com/boitumelomalinga36/laravel-payfast-checkout/tree/main" class="showcase-card__details">View Project</a>
-                    </div>
-
-
-
-                </div> <!-- end showcase-container -->
-
-            </section>
-
-            <!-- ### contact
-                ================================================== -->
-            <section id="contact" class="s-contact target-section">
-
-                <div class="row contact-top">
-                    <div class="column lg-12">
-                        <p class="h1">
-                            Get In Touch
-                        </p>
-                    </div>
-                </div> <!-- end contact-top -->
-
-                <div class="row contact-bottom">
-                    <div class="column lg-4 md-5 tab-6 stack-on-550 contact-block">
-                        <h3 class="text-pretitle">Social</h3>
-                        <ul class="contact-social">
-                            <li><a href="https://www.linkedin.com/in/boitumelo-malinga-a05042226/">LinkedIn</a></li>
-                            <li><a href="https://github.com/boitumelomalinga36">Github</a></li>
-                        </ul>
-                    </div>
-                    <div class="column lg-4 md-12 contact-block">
-                        <a href="mailto:boitumelomalinga36@gmail.com"
-                            class="mailtoui btn btn--medium u-fullwidth contact-btn">Say Hello.</a>
-                    </div>
-                </div> <!-- end contact-bottom -->
-
-            </section> <!-- end contact -->
-
-        </main> <!-- end s-content -->
-
-
-        <!-- ## footer
-            ================================================== -->
-        <footer class="s-footer">
-
-            <div class="row">
-                <div class="column ss-copyright">
-                    <span>© Copyright Boitumelo Malinga <span id="year"></span></span>
-                </div>
-
-                <div class="ss-go-top">
-                    <a class="smoothscroll" title="Back to Top" href="#top">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill-rule="evenodd"
-                            clip-rule="evenodd">
-                            <path
-                                d="M11 2.206l-6.235 7.528-.765-.645 7.521-9 7.479 9-.764.646-6.236-7.53v21.884h-1v-21.883z" />
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-        </footer> <!-- end s-footer -->
-
-    </div> <!-- end -s-pagewrap -->
-
-
-    <!-- Java Script
-        ================================================== -->
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-    <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-
+  <script src="js/main.js"></script>
 </body>
-
 </html>
