@@ -1,0 +1,107 @@
+/* =========================================================
+   Retail Analytics Dashboard Case Study
+   Page-specific stylesheet
+   ========================================================= */
+
+@import url("stokvel.css");
+
+body.retail-case {
+  background:
+    radial-gradient(circle at 12% 8%, rgba(34, 211, 238, .13), transparent 32rem),
+    radial-gradient(circle at 88% 16%, rgba(16, 185, 129, .12), transparent 34rem),
+    linear-gradient(180deg, #070b1c 0%, #0c1329 48%, #070b1c 100%);
+}
+
+.retail-case .hero-dashboard-card {
+  border-color: rgba(52, 211, 153, .34);
+}
+
+.retail-case .case-impact-grid strong,
+.retail-case .data-card small,
+.retail-case .requirements-card-grid article b,
+.retail-case .story-grid article b {
+  color: var(--case-green);
+}
+
+.retail-case .big-card {
+  background: linear-gradient(145deg, rgba(34, 211, 238, .09), rgba(52, 211, 153, .07));
+}
+
+.retail-case .field-chip-grid {
+  margin-bottom: 28px;
+}
+
+.retail-case .single-row {
+  margin-top: 24px;
+}
+
+.retail-case .case-impact-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.retail-case .sql-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
+}
+
+.retail-case .sql-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--case-border);
+  border-radius: var(--case-radius);
+  background: rgba(2, 6, 23, .42);
+}
+
+.retail-case .sql-card h3 {
+  margin: 0;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--case-border);
+  background: rgba(17, 28, 59, .76);
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.retail-case .sql-card pre {
+  margin: 0;
+  padding: 20px;
+  overflow-x: auto;
+  color: #dbeafe;
+  font-size: .86rem;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+.retail-case .sql-card code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+}
+
+.retail-case .insight-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.retail-case .insight-stack .mini-card {
+  margin: 0;
+}
+
+.retail-case #recommendations .benefits-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 760px) {
+  .retail-case .case-impact-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .retail-case .sql-grid,
+  .retail-case #recommendations .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .retail-case .case-impact-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,192 +1,636 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio of Boitumelo Malinga: Business Analyst, Software Developer and Data Analytics Graduate." />
-  <title>Boitumelo Malinga | Portfolio</title>
-  <link rel="stylesheet" href="css/styles.css" />
-</head>
-<body>
-  <div class="cursor-glow"></div>
-  <header class="topbar" id="top">
-    <nav class="nav wrap">
-      <a class="logo" href="#top">Boitumelo Malinga</a>
-      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">LinkedIn</a>
-      </div>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero wrap">
-      <div class="hero-photo reveal">
-        <img src="images/about-photo.jpg" alt="Boitumelo Malinga portrait" />
-      </div>
-      <div class="hero-copy reveal">
-        <p class="small-label">Business Analyst • Software Developer • Data Analyst </p>
-        <h1>Hi, I’m <span>Boitumelo Malinga.</span></h1>
-        <p class="lead">I analyse business problems and build practical technology solutions.</p>
-        <p class="intro">My portfolio shows how I move from problem understanding, requirements and process thinking into working systems built with tools such as Laravel, Flutter, MySQL and modern front-end technologies.</p>
-        <div class="hero-actions">
-          <a class="button" href="#projects">View projects</a>
-          <a class="button secondary" href="https://www.linkedin.com/in/boitumelo-malinga-a05042226" target="_blank" rel="noopener">LinkedIn</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Boitumelo Malinga: Business Analyst, Software Developer and Data Analytics Graduate."
+    />
+    <title>Boitumelo Malinga | Portfolio</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="cursor-glow"></div>
+    <header class="topbar" id="top">
+      <nav class="nav wrap">
+        <a class="logo" href="#top">Boitumelo Malinga</a>
+        <button
+          class="nav-toggle"
+          aria-label="Open navigation"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#live-projects">Web Portfolio</a>
+          <a href="#ba-projects">BA Projects</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#education">Education</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">LinkedIn</a>
         </div>
-      </div>
-    </section>
+      </nav>
+    </header>
 
-    <section class="section about" id="about">
-      <div class="wrap about-layout">
-        <div class="section-title reveal">
-          <p class="small-label">About Me</p>
-          <h2>Business thinking with technical execution.</h2>
+    <main>
+      <!-- hero section -->
+      <section class="hero wrap">
+        <div class="hero-photo reveal">
+          <img src="images/about-photo.jpg" alt="Boitumelo Malinga portrait" />
         </div>
-        <div class="about-panel reveal">
-          <p>I am a Business Analysis and Technology professional with hands-on experience in software development, technical documentation, stakeholder communication and systems thinking.</p>
-          <p>I completed an Advanced Diploma in Business Analysis and a Diploma in Information Technology: Software Development with Distinction. I am currently completing a Postgraduate Diploma in Data Analytics.</p>
-          <p>I enjoy working where business and technology meet: understanding what people need, documenting the problem clearly, designing better workflows and building systems that solve the problem properly.</p>
-        </div>
-        <div class="value-grid">
-          <div class="value-card reveal"><strong>01</strong><h3>Analyse</h3><p>Understand the business problem, users, process and requirements.</p></div>
-          <div class="value-card reveal"><strong>02</strong><h3>Design</h3><p>Map workflows, define user stories and shape the solution.</p></div>
-          <div class="value-card reveal"><strong>03</strong><h3>Build</h3><p>Use technology to turn the solution into a working digital product.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section projects" id="projects">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="small-label">Selected Projects</p>
-          <h2>Projects with clear business problems and technology solutions.</h2>
-        </div>
-
-        <div class="project-grid">
-          <a class="project-card reveal" href="https://github.com/boitumelomalinga36/laravel-payfast-checkout" target="_blank" rel="noopener">
-            <div class="project-top"><span>Laravel • Payments • API</span><b>Repo →</b></div>
-            <h3>PayFast Laravel Payment Integration</h3>
-            <h4>Problem</h4>
-            <p>Small businesses need secure online payments, but payment integrations often become difficult to reuse across multiple websites and booking platforms.</p>
-            <h4>Technology Solution</h4>
-            <p>I designed a reusable Laravel PayFast integration for hosted checkout, tokenisation, recurring billing, webhook handling and transaction verification.</p>
-            <div class="stack">Laravel 8 • PHP • MySQL • PayFast API • Webhooks • Postman</div>
-          </a>
-
-          <a class="project-card reveal" href="https://github.com/boitumelomalinga36/quote-invoice-generator" target="_blank" rel="noopener">
-            <div class="project-top"><span>Laravel • Business Workflow</span><b>Repo →</b></div>
-            <h3>Quote & Invoice Management System</h3>
-            <h4>Problem</h4>
-            <p>Manual quotation and invoicing creates delays, lost records, inconsistent pricing and poor visibility over business activity.</p>
-            <h4>Technology Solution</h4>
-            <p>I built a full-stack system to create quotes and invoices, manage client records, secure user access and improve admin control through structured dashboards.</p>
-            <div class="stack">Laravel • PHP • MySQL • JWT Auth • Email Automation • Dashboards</div>
-          </a>
-
-          <a class="project-card reveal" href="https://github.com/boitumelomalinga36/stokvel-dashboard" target="_blank" rel="noopener">
-            <div class="project-top"><span>Finance Workflow • Laravel</span><b>Repo →</b></div>
-            <h3>Stokvel Management System</h3>
-            <h4>Problem</h4>
-            <p>Stokvels often depend on spreadsheets, WhatsApp updates and manual calculations, making it hard to track member payments, arrears and balances accurately.</p>
-            <h4>Technology Solution</h4>
-            <p>I designed a digital contribution management system for members, monthly expected contributions, actual payments, arrears, balances, dashboards and audit logging.</p>
-            <div class="stack">Laravel • MySQL • CRUD • Dashboard Logic • Audit Logs • Finance Rules</div>
-          </a>
-
-          <a class="project-card reveal" href="https://github.com/boitumelomalinga36/StayNest-Laravel-Booking-Platform" target="_blank" rel="noopener">
-            <div class="project-top"><span>Booking Platform • Property Tech</span><b>Repo →</b></div>
-            <h3>StayNest Booking Platform</h3>
-            <h4>Problem</h4>
-            <p>Short-stay accommodation businesses need a simple way to present spaces, manage enquiries and reduce back-and-forth communication with customers.</p>
-            <h4>Technology Solution</h4>
-            <p>I created a clean booking platform structure where users can view stays, understand property details and submit booking requests through a responsive interface.</p>
-            <div class="stack">Laravel • Front-end UI • MySQL • Booking Workflows • Responsive Design</div>
-          </a>
-
-          <a class="project-card reveal" rel="noopener">
-            <div class="project-top"><span>Mobile App • Flutter</span></div>
-            <h3>Carwash Booking Mobile Application</h3>
-            <h4>Problem</h4>
-            <p>Carwash customers often need to call, message or arrive physically to check availability, which creates scheduling delays and a poor customer experience.</p>
-            <h4>Technology Solution</h4>
-            <p>I developed a cross-platform mobile booking concept for in-store and mobile carwash services, focused on clean navigation and a practical booking workflow.</p>
-            <div class="stack">Flutter • Dart • Mobile UI • Booking Workflow • UX Design</div>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section experience" id="experience">
-      <div class="wrap split-section">
-        <div class="section-title reveal">
-          <p class="small-label">Experience</p>
-          <h2>Professional experience</h2>
-        </div>
-        <div class="timeline">
-          <div class="timeline-item reveal">
-            <span>Feb 2025 – Present</span>
-            <h3>Part-Time Lecturer — Rosebank International</h3>
-            <p>Deliver Business Information Systems and Technical Communication modules while strengthening facilitation, documentation, stakeholder communication and technology-focused problem-solving skills.</p>
-          </div>
-          <div class="timeline-item reveal">
-            <span>Sep 2023 – Nov 2024</span>
-            <h3>Software Developer Intern — Rocvest</h3>
-            <p>Worked on web and mobile applications, APIs, databases and Agile delivery while translating business and system requirements into working software solutions.</p>
+        <div class="hero-copy reveal">
+          <p class="small-label">
+            Business Analyst • Software Developer • Data Analyst
+          </p>
+          <h1>Hi, I’m <span>Boitumelo Malinga.</span></h1>
+          <p class="lead">
+            I analyse business problems and build practical technology
+            solutions.
+          </p>
+          <p class="intro">
+            My portfolio shows how I move from problem understanding,
+            requirements and process thinking into working systems built with
+            tools such as Laravel, Flutter, MySQL and modern front-end
+            technologies.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#projects">View projects</a>
+            <a
+              class="button secondary"
+              href="https://www.linkedin.com/in/boitumelo-malinga-a05042226"
+              target="_blank"
+              rel="noopener"
+              >LinkedIn</a
+            >
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section education" id="education">
-      <div class="wrap split-section">
-        <div class="section-title reveal">
-          <p class="small-label">Education</p>
-          <h2>Academic background</h2>
+      <!-- about me section  -->
+      <section class="section about" id="about">
+        <div class="wrap about-layout">
+          <div class="section-title reveal">
+            <p class="small-label">About Me</p>
+            <h2>Business thinking with technical execution.</h2>
+          </div>
+          <div class="about-panel reveal">
+            <p>
+              I am currently completing a Postgraduate Diploma in Data
+              Analytics, expanding my ability to use data, business intelligence
+              and evidence-based insights to support better decision-making.
+            </p>
+            <p>
+              My primary focus is Business Analysis. I hold an Advanced Diploma
+              in Business Analysis and have practical experience in requirements
+              analysis, stakeholder communication, technical documentation,
+              process improvement and systems thinking. I enjoy understanding
+              business needs, defining problems clearly and translating them
+              into structured, achievable solutions.
+            </p>
+            <p>
+              What strengthens my work as a Business Analyst is my development
+              background. I also hold a Diploma in Information Technology
+              Software Development with Distinction and have hands-on experience
+              creating professional websites, production-ready systems and
+              mobile applications. This technical foundation helps me assess
+              solution feasibility, communicate effectively with development
+              teams and bridge the gap between business requirements and working
+              technology.
+            </p>
+          </div>
+          <div class="value-grid">
+            <div class="value-card reveal">
+              <strong>01</strong>
+              <h3>Analyse</h3>
+              <p>
+                Understand the business problem, users, process and
+                requirements.
+              </p>
+            </div>
+            <div class="value-card reveal">
+              <strong>02</strong>
+              <h3>Design</h3>
+              <p>Map workflows, define user stories and shape the solution.</p>
+            </div>
+            <div class="value-card reveal">
+              <strong>03</strong>
+              <h3>Build</h3>
+              <p>
+                Use technology to turn the solution into a working digital
+                product.
+              </p>
+            </div>
+          </div>
         </div>
-        <div class="education-grid">
-          <div class="edu-card reveal"><span>2026 – Present</span><h3>Postgraduate Diploma in Data Analytics</h3><p>Rosebank College</p><p>Business intelligence, statistical analysis, data visualisation and data-driven decision-making.</p></div>
-          <div class="edu-card reveal"><span>2024</span><h3>Advanced Diploma in Business Analysis</h3><p>Rhodes University</p><p>Requirements engineering, stakeholder management, process modelling, systems analysis and solution design.</p></div>
-          <div class="edu-card reveal"><span>2021 – 2023</span><h3>Diploma in IT: Software Development</h3><p>Rosebank College • Distinction</p><p>Programming, databases, software development, testing and IT project implementation.</p></div>
+      </section>
+
+      <!-- WEB DEVELOPMENT PORTFOLIO SECTION -->
+      <section class="section live-projects" id="live-projects">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="small-label">Web Development Portfolio</p>
+            <h2>Live websites created for clients.</h2>
+            <p>
+              Responsive business websites designed and developed with HTML, CSS
+              and JavaScript.
+            </p>
+          </div>
+
+          <div class="live-project-grid">
+            <a
+              class="live-project-card reveal"
+              href="https://refinedinnovations.co.za/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Visit the Refined Innovations website"
+            >
+              <div class="live-project-media">
+                <img
+                  src="images/websites/refinedinnovations.png"
+                  alt="Refined Innovations website homepage"
+                />
+                <span>Live Website</span>
+              </div>
+              <div class="live-project-body">
+                <p class="small-label">HTML • CSS • JavaScript</p>
+                <h3>Refined Innovations</h3>
+                <p>
+                  A multi-industry company developing practical solutions across
+                  technology, property and business development.
+                </p>
+                <span class="live-project-link">Visit website →</span>
+              </div>
+            </a>
+
+            <a
+              class="live-project-card reveal"
+              href="https://budokaratecentre.co.za/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Visit the Budo Karate Centre website"
+            >
+              <div class="live-project-media">
+                <img
+                  src="images/websites/budokarate.png"
+                  alt="Budo Karate Centre website homepage"
+                />
+                <span>Live Website</span>
+              </div>
+              <div class="live-project-body">
+                <p class="small-label">HTML • CSS • JavaScript</p>
+                <h3>Budo Karate Centre</h3>
+                <p>
+                  An inclusive Gauteng karate school teaching traditional
+                  Okinawa Goju-Ryu Karate-Do to students of all ages.
+                </p>
+                <span class="live-project-link">Visit website →</span>
+              </div>
+            </a>
+
+            <a
+              class="live-project-card reveal"
+              href="https://auroraresearch.co.za/"
+              target="_blank"
+              rel="noopener"
+              aria-label="Visit the Aurora Research website"
+            >
+              <div class="live-project-media">
+                <img
+                  src="images/websites/auroraresearch.png"
+                  alt="Aurora Research website homepage"
+                />
+                <span>Live Website</span>
+              </div>
+              <div class="live-project-body">
+                <p class="small-label">HTML • CSS • JavaScript</p>
+                <h3>Aurora Research</h3>
+                <p>
+                  Strategic STI policy research, evaluation and innovation
+                  intelligence for stronger innovation systems.
+                </p>
+                <span class="live-project-link">Visit website →</span>
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="section skills" id="skills">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <p class="small-label">Skills</p>
-          <h2>Skills I use to deliver solutions.</h2>
+      <!-- BA SECTION -->
+      <section class="section ba-projects" id="ba-projects">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="small-label">Business Analyst Portfolio</p>
+            <h2>
+              Business analysis projects with requirements, process models and
+              solution artefacts.
+            </h2>
+            <p>
+              These projects demonstrate the full BA lifecycle: business problem
+              analysis, stakeholder engagement, requirements definition, process
+              improvement, user stories, use cases, testing and solution design.
+            </p>
+          </div>
+
+          <div class="ba-project-grid">
+            <a
+              class="ba-project-card featured reveal"
+              href="projects/stokvel-management-system.html"
+            >
+              <div class="ba-card-media">
+                <img
+                  src="images/laravel-featured.png"
+                  alt="Placeholder wireframe for Stokvel Management System dashboard"
+                />
+                <span>Completed Documentation</span>
+              </div>
+              <div class="ba-card-body">
+                <p class="small-label">
+                  Business Process Analysis • Requirements • UAT
+                </p>
+                <h3>Stokvel Management System</h3>
+                <p>
+                  A complete BA case study for a digital stokvel solution that
+                  replaces manual spreadsheets and WhatsApp tracking with
+                  centralised member, contribution, arrears and reporting
+                  management.
+                </p>
+                <div class="artefact-pills">
+                  <span>Project Charter</span><span>Stakeholders</span
+                  ><span>BRD</span><span>FRS</span><span>User Stories</span
+                  ><span>Use Cases</span><span>AS-IS / TO-BE</span>
+                </div>
+                <strong>View full project documentation →</strong>
+              </div>
+            </a>
+
+            <a
+              class="ba-project-card reveal"
+              href="projects/retail-analytics-dashboard.html"
+            >
+              <div class="ba-card-media">
+                <img
+                  src="images/power-bi.jpg"
+                  alt="Placeholder wireframe for Retail Analytics Dashboard"
+                />
+                <span>Completed Case Study</span>
+              </div>
+              <div class="ba-card-body">
+                <p class="small-label">Power BI • SQL • KPI Design</p>
+                <h3>Retail Analytics Dashboard</h3>
+                <p>
+                  A Business Intelligence case study focused on retail sales,
+                  store performance, product movement, inventory insights and
+                  management reporting using dashboard-ready analytics.
+                </p>
+                <div class="artefact-pills">
+                  <span>Power BI</span><span>SQL</span
+                  ><span>KPI Definitions</span><span>Dashboard Wireframes</span>
+                </div>
+                <strong>View full project documentation →</strong>
+              </div>
+            </a>
+
+            <article class="ba-project-card reveal muted-card">
+              <div class="ba-card-media">
+                <img
+                  src="images/bootstrap-5.0-illustration.png"
+                  alt="Placeholder wireframe for Medical Practice Booking Platform"
+                />
+                <span>Flagship Project</span>
+              </div>
+              <div class="ba-card-body">
+                <p class="small-label">
+                  Systems Analysis • Booking Workflow • Payments
+                </p>
+                <h3>Medical Practice Booking Platform</h3>
+                <p>
+                  A final flagship project that will document the business,
+                  system, payment and appointment workflows for a medical
+                  practice booking platform.
+                </p>
+                <div class="artefact-pills">
+                  <span>BRD</span><span>BPMN</span><span>Backlog</span
+                  ><span>UAT</span><span>Solution Design</span>
+                </div>
+              </div>
+            </article>
+          </div>
         </div>
-        <div class="skills-grid">
-          <div class="skill-card reveal"><h3>Business Analysis</h3><p>Requirements gathering, stakeholder analysis, process mapping, BPMN, BRD documentation, user stories, UAT support and solution design.</p></div>
-          <div class="skill-card reveal"><h3>Software Development</h3><p>Laravel, PHP, JavaScript, Vue.js, Angular, NestJS, Flutter, Dart, C#, ASP.NET MVC, REST APIs and database-backed applications.</p></div>
-          <div class="skill-card reveal"><h3>Data & Tools</h3><p>SQL, MySQL, PostgreSQL, SQL Server, Python, Jupyter Notebook, GitHub, Postman, Swagger, VS Code, Excel and BI concepts.</p></div>
+      </section>
+
+      <!-- DEV PROJECTS -->
+      <section class="section projects" id="projects">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="small-label">Selected Projects</p>
+            <h2>
+              Projects with clear business problems and technology solutions.
+            </h2>
+          </div>
+
+          <div class="project-grid">
+            <a
+              class="project-card reveal"
+              href="https://github.com/boitumelomalinga36/laravel-payfast-checkout"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="project-top">
+                <span>Laravel • Payments • API</span><b>Repo →</b>
+              </div>
+              <h3>PayFast Laravel Payment Integration</h3>
+              <h4>Problem</h4>
+              <p>
+                Small businesses need secure online payments, but payment
+                integrations often become difficult to reuse across multiple
+                websites and booking platforms.
+              </p>
+              <h4>Technology Solution</h4>
+              <p>
+                I designed a reusable Laravel PayFast integration for hosted
+                checkout, tokenisation, recurring billing, webhook handling and
+                transaction verification.
+              </p>
+              <div class="stack">
+                Laravel 8 • PHP • MySQL • PayFast API • Webhooks • Postman
+              </div>
+            </a>
+
+            <a
+              class="project-card reveal"
+              href="https://github.com/boitumelomalinga36/quote-invoice-generator"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="project-top">
+                <span>Laravel • Business Workflow</span><b>Repo →</b>
+              </div>
+              <h3>Quote & Invoice Management System</h3>
+              <h4>Problem</h4>
+              <p>
+                Manual quotation and invoicing creates delays, lost records,
+                inconsistent pricing and poor visibility over business activity.
+              </p>
+              <h4>Technology Solution</h4>
+              <p>
+                I built a full-stack system to create quotes and invoices,
+                manage client records, secure user access and improve admin
+                control through structured dashboards.
+              </p>
+              <div class="stack">
+                Laravel • PHP • MySQL • JWT Auth • Email Automation • Dashboards
+              </div>
+            </a>
+
+            <a
+              class="project-card reveal"
+              href="https://github.com/boitumelomalinga36/stokvel-dashboard"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="project-top">
+                <span>Finance Workflow • Laravel</span><b>Repo →</b>
+              </div>
+              <h3>Stokvel Management System</h3>
+              <h4>Problem</h4>
+              <p>
+                Stokvels often depend on spreadsheets, WhatsApp updates and
+                manual calculations, making it hard to track member payments,
+                arrears and balances accurately.
+              </p>
+              <h4>Technology Solution</h4>
+              <p>
+                I designed a digital contribution management system for members,
+                monthly expected contributions, actual payments, arrears,
+                balances, dashboards and audit logging.
+              </p>
+              <div class="stack">
+                Laravel • MySQL • CRUD • Dashboard Logic • Audit Logs • Finance
+                Rules
+              </div>
+            </a>
+
+            <a
+              class="project-card reveal"
+              href="https://github.com/boitumelomalinga36/StayNest-Laravel-Booking-Platform"
+              target="_blank"
+              rel="noopener"
+            >
+              <div class="project-top">
+                <span>Booking Platform • Property Tech</span><b>Repo →</b>
+              </div>
+              <h3>StayNest Booking Platform</h3>
+              <h4>Problem</h4>
+              <p>
+                Short-stay accommodation businesses need a simple way to present
+                spaces, manage enquiries and reduce back-and-forth communication
+                with customers.
+              </p>
+              <h4>Technology Solution</h4>
+              <p>
+                I created a clean booking platform structure where users can
+                view stays, understand property details and submit booking
+                requests through a responsive interface.
+              </p>
+              <div class="stack">
+                Laravel • Front-end UI • MySQL • Booking Workflows • Responsive
+                Design
+              </div>
+            </a>
+
+            <a class="project-card reveal" rel="noopener">
+              <div class="project-top"><span>Mobile App • Flutter</span></div>
+              <h3>Carwash Booking Mobile Application</h3>
+              <h4>Problem</h4>
+              <p>
+                Carwash customers often need to call, message or arrive
+                physically to check availability, which creates scheduling
+                delays and a poor customer experience.
+              </p>
+              <h4>Technology Solution</h4>
+              <p>
+                I developed a cross-platform mobile booking concept for in-store
+                and mobile carwash services, focused on clean navigation and a
+                practical booking workflow.
+              </p>
+              <div class="stack">
+                Flutter • Dart • Mobile UI • Booking Workflow • UX Design
+              </div>
+            </a>
+          </div>
         </div>
+      </section>
+
+      <!-- Experience SECTION -->
+      <section class="section experience" id="experience">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="small-label">Experience</p>
+            <h2>Professional experience</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline-item reveal">
+              <span>Aug 2026 – Present</span>
+              <h3>Business Application Coordinator — Rosebank International</h3>
+              <p>
+                Support enterprise business applications through systems
+                support, user assistance and data-driven insights that improve
+                business performance and decision-making. Analyse, clean and
+                transform data using SQL; develop interactive Power BI
+                dashboards and reports; and monitor data quality across multiple
+                business systems. Manage Service Desk requests, resolve
+                application issues, collaborate with stakeholders to improve
+                processes and provide user training that strengthens system
+                adoption and operational efficiency.
+              </p>
+            </div>
+            <div class="timeline-item reveal">
+              <span>Feb 2025 – Present</span>
+              <h3>Part-Time Lecturer — Rosebank International</h3>
+              <p>
+                Delivered and facilitated learning across multiple modules while
+                developing students' technical knowledge and problem-solving
+                abilities. Strengthened analytical thinking, stakeholder
+                communication, documentation, and organisational skills through
+                lesson planning, assessment, and student support. Evaluated
+                performance data, identified improvement opportunities, and
+                provided actionable feedback to enhance learning outcomes.
+                Collaborated with academic teams to ensure effective programme
+                delivery while managing large student cohorts and competing
+                priorities. This experience developed strong competencies in
+                stakeholder engagement, requirements interpretation,
+                problem-solving, process improvement, and communicating complex
+                information in a clear and practical manner.
+              </p>
+            </div>
+            <div class="timeline-item reveal">
+              <span>Sep 2023 – Nov 2024</span>
+              <h3>Software Developer Intern — Rocvest</h3>
+              <p>
+                Contributed to the design, development, testing, and maintenance
+                of web and mobile applications across the full software
+                development lifecycle. Collaborated with stakeholders to
+                translate business requirements into technical solutions while
+                developing applications using Flutter, Angular, Vue.js, Laravel,
+                NestJS, and MySQL. Strengthened skills in requirements analysis,
+                problem-solving, API development, testing, debugging, and
+                solution documentation. Worked closely with technical and
+                non-technical teams to deliver scalable, user-focused solutions
+                that aligned with business objectives.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION SECTION -->
+      <section class="section education" id="education">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="small-label">Education</p>
+            <h2>Academic background</h2>
+          </div>
+          <div class="education-grid">
+            <div class="edu-card reveal">
+              <span>2026 – Present</span>
+              <h3>Postgraduate Diploma in Data Analytics</h3>
+              <p>Rosebank College</p>
+              <p>
+                Business intelligence, statistical analysis, data visualisation
+                and data-driven decision-making.
+              </p>
+            </div>
+            <div class="edu-card reveal">
+              <span>2024</span>
+              <h3>Advanced Diploma in Business Analysis</h3>
+              <p>Rhodes University</p>
+              <p>
+                Requirements engineering, stakeholder management, process
+                modelling, systems analysis and solution design.
+              </p>
+            </div>
+            <div class="edu-card reveal">
+              <span>2021 – 2023</span>
+              <h3>Diploma in IT: Software Development</h3>
+              <p>Rosebank College • Distinction</p>
+              <p>
+                Programming, databases, software development, testing and IT
+                project implementation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS SECTION -->
+      <section class="section skills" id="skills">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <p class="small-label">Skills</p>
+            <h2>Skills I use to deliver solutions.</h2>
+          </div>
+          <div class="skills-grid">
+            <div class="skill-card reveal">
+              <h3>Business Analysis</h3>
+              <p>
+                Requirements gathering, stakeholder analysis, process mapping,
+                BPMN, BRD documentation, user stories, UAT support and solution
+                design.
+              </p>
+            </div>
+            <div class="skill-card reveal">
+              <h3>Software Development</h3>
+              <p>
+                Laravel, PHP, JavaScript, Vue.js, Angular, NestJS, Flutter,
+                Dart, C#, ASP.NET MVC, REST APIs and database-backed
+                applications.
+              </p>
+            </div>
+            <div class="skill-card reveal">
+              <h3>Data & Tools</h3>
+              <p>
+                SQL, MySQL, PostgreSQL, SQL Server, Python, Jupyter Notebook,
+                GitHub, Postman, Swagger, VS Code, Excel and BI concepts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION -->
+      <section class="section contact" id="contact">
+        <div class="wrap contact-card reveal">
+          <p class="small-label">Connect</p>
+          <h2>Let’s connect on LinkedIn.</h2>
+          <p>
+            This portfolio is my digital CV. LinkedIn is the best place to reach
+            me professionally.
+          </p>
+          <a
+            class="button"
+            href="https://www.linkedin.com/in/boitumelo-malinga-a05042226"
+            target="_blank"
+            rel="noopener"
+            >Open LinkedIn Profile</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <p>© <span id="current-year"></span> Boitumelo Malinga</p>
+        <a href="#">Back to top ↑</a>
       </div>
-    </section>
+    </footer>
 
-    <section class="section contact" id="contact">
-      <div class="wrap contact-card reveal">
-        <p class="small-label">Connect</p>
-        <h2>Let’s connect on LinkedIn.</h2>
-        <p>This portfolio is my digital CV. LinkedIn is the best place to reach me professionally.</p>
-        <a class="button" href="https://www.linkedin.com/in/boitumelo-malinga-a05042226" target="_blank" rel="noopener">Open LinkedIn Profile</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <p>© 2026 Boitumelo Malinga</p>
-<a href="#">Back to top ↑</a>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
-</body>
+    <script src="js/main.js"></script>
+    <script>
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+    </script>
+  </body>
 </html>
