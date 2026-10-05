@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A clear Git-based deployment workflow for Laravel applications hosted on shared hosting." />
+  <title>Git-Based Laravel Deployment Workflow | Boitumelo Malinga</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/git-deployment.css" />
+</head>
+<body class="deployment-page">
+  <div class="reading-progress" aria-hidden="true"><span></span></div>
+  <div class="cursor-glow"></div>
+  <header class="topbar" id="top">
+    <nav class="nav wrap">
+      <a class="logo" href="../index.html#top">Boitumelo Malinga</a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+      <div class="nav-links">
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#ba-projects">Documentation</a>
+        <a href="../index.html#projects">Tech Projects</a>
+        <a href="../index.html#contact">LinkedIn</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="deployment-hero wrap">
+      <p class="small-label">Technical Documentation • Laravel • Shared Hosting</p>
+      <h1>Git-Based Laravel Deployment Workflow</h1>
+      <p class="lead">A safe, repeatable release process that replaces manual FTP updates with Git branches, GitHub pull requests and one guarded production deployment script.</p>
+      <div class="doc-meta">
+        <span>27 documented topics</span><span>develop → main workflow</span><span>Read-only deploy key</span><span>No Node required on production</span>
+      </div>
+      <div class="hero-actions">
+        <a class="button" href="#purpose">Start the guide</a>
+        <a class="button secondary" href="../index.html#ba-projects">Back to documentation</a>
+      </div>
+    </section>
+
+    <div class="wrap doc-layout">
+      <aside class="doc-toc" aria-label="Guide contents">
+        <h2>On this page</h2>
+        <p class="toc-status"><span></span><b>Purpose</b></p>
+        <nav>
+          <a href="#purpose">Purpose</a><a href="#placeholders">1. Placeholders</a><a href="#branches">2–3. Branch and release flow</a>
+          <a href="#prepare">4–7. Prepare local Git</a><a href="#server">8–10. Prepare production</a><a href="#deploy-key">11. Deploy key</a>
+          <a href="#connect">12–14. Connect production</a><a href="#assets">15. Frontend assets</a><a href="#script">16–17. Deployment script</a>
+          <a href="#release">18–20. Release and deploy</a><a href="#protected">21. Protected files</a><a href="#errors">22. Common errors</a>
+          <a href="#rollback">23. Rollback</a><a href="#security">24. Security</a><a href="#checklist">25. Checklist</a>
+          <a href="#quick-reference">26. Quick reference</a><a href="#process-map">Process map</a><a href="#rule">27. Final rule</a>
+        </nav>
+      </aside>
+
+      <article class="doc-content">
+        <section class="doc-section" id="purpose">
+          <span class="step-label">→</span><h2>Purpose and outcome</h2>
+          <p>FTP is useful for an initial installation, but it should not be the normal release method. Once this workflow is active, every change is recorded, reviewed and deployed consistently while the production environment stays intact.</p>
+          <div class="flow"><span>Local change</span><i>→</i><span>Feature branch</span><i>→</i><span>PR to develop</span><i>→</i><span>PR to main</span><i>→</i><span>Deploy production</span></div>
+          <ol><li>Develop locally and isolate each change in its own branch.</li><li>Review changes through GitHub pull requests.</li><li>Deploy only the approved <code>main</code> branch.</li><li>Keep <code>.env</code>, storage, uploads, public entry files and the database in place.</li><li>Build frontend assets locally because the shared server has no Node or NPM.</li></ol>
+          <div class="callout warning"><p><strong>Important:</strong> Replace every placeholder in this guide. Never publish passwords, private keys, APP_KEY values, payment passphrases, API secrets or database credentials.</p></div>
+
+        </section>
+
+        <section class="doc-section" id="placeholders">
+          <span class="step-label">1</span><h2>Placeholders used in this guide</h2>
+          <ul><li><code>&lt;LOCAL_PROJECT&gt;</code> — local Laravel directory</li><li><code>&lt;GITHUB_OWNER&gt;</code> and <code>&lt;GITHUB_REPOSITORY&gt;</code> — repository details</li><li><code>&lt;SSH_USER&gt;</code>, <code>&lt;SSH_HOST&gt;</code> and <code>&lt;SSH_PORT&gt;</code> — hosting SSH details</li><li><code>&lt;APP_DIR&gt;</code> — private Laravel application directory</li><li><code>&lt;PUBLIC_DIR&gt;</code> — website document root</li><li><code>&lt;PHP_BIN&gt;</code> and <code>&lt;COMPOSER_BIN&gt;</code> — server executables</li><li><code>&lt;PRODUCTION_URL&gt;</code> — final HTTPS URL</li></ul>
+        </section>
+
+        <section class="doc-section" id="branches">
+          <span class="step-label">2</span><h2>Branch structure and complete release flow</h2>
+          <p><strong>develop</strong> contains integrated work. <strong>main</strong> contains approved production code. Feature and bug-fix branches isolate individual changes.</p>
+          <div class="code-box"><pre><code>feature/descriptive-feature-name
+bugfix/descriptive-problem-name
+docs/descriptive-document-name
+chore/descriptive-maintenance-name</code></pre></div>
+          <div class="learning-note"><b>What this means</b><p>The word before the slash describes the type of work. The words after it describe the specific change. This makes the purpose of a branch clear before anyone opens it.</p></div>
+          <div class="flow"><span>develop</span><i>→</i><span>feature/* or bugfix/*</span><i>→</i><span>PR into develop</span><i>→</i><span>PR into main</span><i>→</i><span>production</span></div>
+          <p>This provides two approval points: first, whether an individual change belongs in the integrated version; second, whether the complete integrated version is ready for production.</p>
+        </section>
+
+        <section class="doc-section" id="prepare">
+          <span class="step-label">4</span><h2>Prepare local Git before connecting production</h2>
+          <h3>Bring main up to date</h3>
+          <p class="code-intro"><strong>Run these commands from your local project.</strong> They update <code>develop</code>, then compare it with <code>main</code> without changing either branch.</p>
+          <div class="code-box"><pre><code>cd &lt;LOCAL_PROJECT&gt;
+git switch develop
+git pull --ff-only origin develop
+
+git rev-list --count main..develop
+git rev-list --count develop..main
+git --no-pager diff --stat develop main</code></pre></div>
+          <div class="command-breakdown"><p><code>cd</code> enters your project folder.</p><p><code>git switch</code> changes the active branch.</p><p><code>git pull --ff-only</code> downloads changes but refuses to create an unexpected merge.</p><p><code>git rev-list --count</code> counts commits that exist on one branch but not the other.</p></div>
+          <p>If develop is ahead, open a GitHub pull request with <code>base: main</code> and <code>compare: develop</code>. Merge it, then update both local branches.</p>
+          <div class="code-box"><pre><code>git switch main
+git pull --ff-only origin main
+git switch develop
+git pull --ff-only origin develop</code></pre></div>
+          <h3>If .DS_Store blocks a branch switch</h3>
+          <p class="code-intro">A stash safely puts an uncommitted change aside. Here it targets only <code>.DS_Store</code>, so your other work is left untouched.</p>
+          <div class="code-box"><pre><code>git stash push -m "temporary local DS Store change" -- .DS_Store
+git switch main
+git pull --ff-only origin main
+git stash list</code></pre></div>
+          <h3>If main was pulled while still on develop</h3>
+          <div class="code-box"><pre><code>git switch main
+git pull --ff-only origin main
+git branch -f develop origin/develop
+git switch develop
+git pull --ff-only origin develop</code></pre></div>
+          <div class="callout warning"><p>Use <code>git branch -f</code> only while develop is not checked out and after confirming the intended work exists on <code>origin/develop</code>.</p></div>
+          <h3>Start and finish normal work</h3>
+          <p class="code-intro">This is the everyday developer loop: update develop, create an isolated branch, inspect and build the work, then commit and publish the branch.</p>
+          <div class="code-box"><pre><code>cd &lt;LOCAL_PROJECT&gt;
+git switch develop
+git pull --ff-only origin develop
+git switch -c feature/&lt;FEATURE_NAME&gt;
+
+git status --short
+git diff
+npm run build
+
+git add .
+git commit -m "feat: describe the feature"
+git push -u origin feature/&lt;FEATURE_NAME&gt;</code></pre></div>
+        </section>
+
+        <section class="doc-section" id="server">
+          <span class="step-label">8</span><h2>Verify and prepare the production server</h2>
+          <h3>Connect and check required tools</h3>
+          <p class="code-intro">SSH opens a secure terminal session on the hosting server. The checks below only inspect the environment—they do not install or change anything.</p>
+          <div class="code-box"><pre><code>ssh &lt;SSH_USER&gt;@&lt;SSH_HOST&gt; -p &lt;SSH_PORT&gt;
+cd &lt;APP_DIR&gt;
+
+git --version
+git status
+git remote -v
+git branch --show-current
+command -v composer || echo "Composer command unavailable"
+command -v node || echo "Node unavailable"
+command -v npm || echo "NPM unavailable"
+command -v rsync || echo "rsync unavailable"
+command -v curl || echo "curl unavailable"
+&lt;COMPOSER_BIN&gt; --version
+bash --version | head -1</code></pre></div>
+          <div class="command-breakdown"><p><code>command -v</code> reports where a program is installed.</p><p><code>||</code> runs the message on its right only if the check on its left fails.</p><p><code>head -1</code> keeps the version output short.</p></div>
+          <p>The workflow requires Git, Bash, PHP, Composer, rsync and curl. Node and NPM are not required on production.</p>
+          <h3>Check ignored production data</h3>
+          <div class="code-box"><pre><code>grep -nE '^/?(\.env|vendor|node_modules|public/build)' .gitignore
+
+mkdir -p &lt;HOME_BACKUP_DIR&gt;
+chmod 700 &lt;HOME_BACKUP_DIR&gt;</code></pre></div>
+          <p>At minimum, never commit <code>.env</code>, <code>vendor</code>, <code>node_modules</code>, <code>public/storage</code> or storage runtime content. Keep backups outside both the repository and public document root.</p>
+          <h3>Initialise Git safely in the existing application</h3>
+          <p class="code-intro"><code>git init</code> adds Git tracking metadata to the existing folder. It does not delete the Laravel files already there.</p>
+          <div class="code-box"><pre><code>cd &lt;APP_DIR&gt;
+git init -b main
+git remote add origin https://github.com/&lt;GITHUB_OWNER&gt;/&lt;GITHUB_REPOSITORY&gt;.git</code></pre></div>
+          <div class="callout warning"><p>Do not clone over the working application and do not use <code>git reset --hard</code>. Either action can overwrite production-specific files.</p></div>
+        </section>
+
+        <section class="doc-section" id="deploy-key">
+          <span class="step-label">11</span><h2>Authenticate with a read-only deploy key</h2>
+          <p class="code-intro">A deploy key lets this one server read this one private repository. The public half goes to GitHub; the private half never leaves the server.</p>
+          <div class="code-box"><pre><code>mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+ssh-keygen -t ed25519 \
+  -C "production-deployment" \
+  -f ~/.ssh/application_github \
+  -N ""
+
+chmod 600 ~/.ssh/application_github
+chmod 644 ~/.ssh/application_github.pub
+cat ~/.ssh/application_github.pub</code></pre></div>
+          <div class="command-breakdown"><p><code>mkdir -p</code> creates the SSH folder if needed.</p><p><code>chmod 700</code> allows only your server account to access that folder.</p><p><code>ssh-keygen</code> creates the public/private key pair without a passphrase, which allows non-interactive deployment.</p></div>
+          <ol><li>Open the GitHub repository and go to <strong>Settings → Deploy keys</strong>.</li><li>Add the complete public key and leave <strong>Allow write access</strong> unchecked.</li><li>Test authentication, switch the remote to SSH and bind this repository to its key.</li></ol>
+          <div class="code-box"><pre><code>ssh -i ~/.ssh/application_github \
+  -o IdentitiesOnly=yes \
+  -T git@github.com
+
+cd &lt;APP_DIR&gt;
+git remote set-url origin git@github.com:&lt;GITHUB_OWNER&gt;/&lt;GITHUB_REPOSITORY&gt;.git
+git config core.sshCommand \
+  "ssh -i &lt;HOME&gt;/.ssh/application_github -o IdentitiesOnly=yes"
+git remote -v</code></pre></div>
+          <div class="callout"><p>Display and copy only the <code>.pub</code> file. Never reveal or upload the private key.</p></div>
+        </section>
+
+        <section class="doc-section" id="connect">
+          <span class="step-label">12</span><h2>Connect production without overwriting it</h2>
+          <p class="code-intro">This is the careful bridge between the manually uploaded application and Git. Fetch first, then compare the repository version with the files already serving users.</p>
+          <div class="code-box"><pre><code>cd &lt;APP_DIR&gt;
+git fetch origin main
+git reset --mixed origin/main
+git status --short &gt; /tmp/application-git-status.txt
+wc -l /tmp/application-git-status.txt
+sed -n '1,160p' /tmp/application-git-status.txt
+git branch --show-current
+git log -1 --oneline</code></pre></div>
+          <p>A mixed reset associates the working directory with <code>origin/main</code> without replacing working files. Review every reported difference.</p>
+          <div class="learning-note"><b>Why not use a hard reset?</b><p>A hard reset writes repository versions over working files. On an existing production installation that could destroy server-specific changes before you have reviewed them.</p></div>
+          <h3>Mark deliberate production exclusions</h3>
+          <p class="code-intro"><code>skip-worktree</code> is a local instruction telling Git not to repeatedly report known production-only differences. It is not committed and must be documented for future maintainers.</p>
+          <div class="code-box"><pre><code>git update-index --skip-worktree \
+  .DS_Store \
+  bootstrap/cache/.gitignore \
+  storage/app/.gitignore \
+  storage/framework/.gitignore \
+  storage/framework/cache/.gitignore \
+  storage/framework/sessions/.gitignore \
+  storage/framework/views/.gitignore \
+  storage/logs/.gitignore
+
+git ls-files 'tests/**' | while read -r production_test_file; do
+  git update-index --skip-worktree "$production_test_file"
+done
+
+git status --short
+git ls-files -v | awk '$1 == "S" {print $2}'</code></pre></div>
+          <p>Never hide unexplained changes in application code, routes, migrations, configuration or dependency lock files.</p>
+          <h3>Set and verify the upstream</h3>
+          <div class="code-box"><pre><code>git branch --set-upstream-to=origin/main main
+git branch -vv
+git log -1 --oneline
+
+curl -sS -o /dev/null -w "Homepage: %{http_code}\n" &lt;PRODUCTION_URL&gt;/
+curl -sS -o /dev/null -w "Health: %{http_code}\n" &lt;PRODUCTION_URL&gt;/health</code></pre></div>
+        </section>
+
+        <section class="doc-section" id="assets">
+          <span class="step-label">15</span><h2>Build frontend assets without Node on production</h2>
+          <p>Remove <code>/public/build</code> from <code>.gitignore</code> because this server cannot run Vite. Build locally and commit the generated assets with each affected release.</p>
+          <div class="learning-note"><b>Why commit generated files?</b><p>Normally Vite builds assets on the server. Here the server has no Node runtime, so your computer creates the final CSS and JavaScript bundle and Git transports that exact bundle to production.</p></div>
+          <div class="code-box"><pre><code>npm ci
+npm run build
+ls -la public/build
+ls -la public/build/manifest.json
+
+git add .gitignore public/build
+git commit -m "chore: include production frontend assets"</code></pre></div>
+          <div class="callout warning"><p>Do not copy a development <code>public/hot</code> file to production. It points Laravel to a local Vite development server.</p></div>
+        </section>
+
+        <section class="doc-section" id="script">
+          <span class="step-label">16</span><h2>Create the guarded deployment script</h2>
+          <p>Store the script at <code>deploy/shared-hosting-deploy.sh</code>, replace the placeholders and make it executable.</p>
+          <p class="code-intro"><code>chmod +x</code> gives the file permission to run as a program. You normally do this once and commit the executable permission to Git.</p>
+          <div class="code-box"><pre><code>chmod +x deploy/shared-hosting-deploy.sh</code></pre></div>
+          <div class="code-box"><pre><code>#!/usr/bin/env bash
+set -Eeuo pipefail
+
+APP_DIR="&lt;APP_DIR&gt;"
+PUBLIC_DIR="&lt;PUBLIC_DIR&gt;"
+PHP_BIN="&lt;PHP_BIN&gt;"
+COMPOSER_BIN="&lt;COMPOSER_BIN&gt;"
+DEPLOY_BRANCH="main"
+HEALTH_URL="&lt;PRODUCTION_URL&gt;/health"
+maintenance_enabled=false
+
+restore_application() {
+  if [[ "$maintenance_enabled" == "true" ]]; then
+    "$PHP_BIN" "$APP_DIR/artisan" up &gt;/dev/null 2&gt;&amp;1 || true
+  fi
+}
+
+deployment_failed() {
+  local exit_code=$?
+  local line_number=${1:-unknown}
+  restore_application
+  printf 'Deployment failed at line %s. Maintenance mode was disabled.\n' "$line_number" &gt;&amp;2
+  exit "$exit_code"
+}
+trap 'deployment_failed $LINENO' ERR
+
+[[ -d "$APP_DIR/.git" ]] || { echo "Not connected to Git" &gt;&amp;2; exit 1; }
+[[ -f "$APP_DIR/.env" ]] || { echo "Production .env is missing" &gt;&amp;2; exit 1; }
+[[ -f "$PUBLIC_DIR/index.php" &amp;&amp; -f "$PUBLIC_DIR/.htaccess" ]] || {
+  echo "Public entry files are missing" &gt;&amp;2; exit 1;
+}
+[[ -x "$PHP_BIN" &amp;&amp; -x "$COMPOSER_BIN" ]] || {
+  echo "PHP or Composer is unavailable" &gt;&amp;2; exit 1;
+}
+
+cd "$APP_DIR"
+[[ "$(git branch --show-current)" == "$DEPLOY_BRANCH" ]] || {
+  echo "Production must remain on main" &gt;&amp;2; exit 1;
+}
+[[ -z "$(git status --porcelain --untracked-files=no)" ]] || {
+  echo "Tracked production files contain local changes" &gt;&amp;2;
+  git status --short --untracked-files=no &gt;&amp;2; exit 1;
+}
+
+git fetch origin "$DEPLOY_BRANCH"
+current_revision=$(git rev-parse HEAD)
+target_revision=$(git rev-parse "origin/$DEPLOY_BRANCH")
+git merge-base --is-ancestor "$current_revision" "$target_revision" || {
+  echo "Remote is not a fast-forward update" &gt;&amp;2; exit 1;
+}
+
+"$PHP_BIN" artisan down --retry=30
+maintenance_enabled=true
+git merge --ff-only "origin/$DEPLOY_BRANCH"
+"$COMPOSER_BIN" install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+"$PHP_BIN" artisan migrate --force
+
+rsync -a --delete \
+  --exclude='index.php' \
+  --exclude='.htaccess' \
+  --exclude='storage' \
+  --exclude='hot' \
+  "$APP_DIR/public/" "$PUBLIC_DIR/"
+
+"$PHP_BIN" artisan optimize:clear
+"$PHP_BIN" artisan config:cache
+"$PHP_BIN" artisan route:cache
+"$PHP_BIN" artisan view:cache
+"$PHP_BIN" artisan up
+maintenance_enabled=false
+curl --fail --silent --show-error --max-time 30 "$HEALTH_URL" &gt;/dev/null
+
+deployed_revision=$(git rev-parse HEAD)
+printf 'Deployment completed: %s\n' "$deployed_revision"
+printf 'Health check: %s\n' "$HEALTH_URL"</code></pre></div>
+          <div class="command-breakdown script-explanation"><p><strong>Strict mode:</strong> <code>set -Eeuo pipefail</code> stops the script when a command, variable or pipeline fails unexpectedly.</p><p><strong>Error trap:</strong> if deployment fails after maintenance mode starts, the trap brings Laravel back online.</p><p><strong>Preflight:</strong> file, branch and working-tree checks stop an unsafe release before it affects users.</p><p><strong>Fast-forward check:</strong> production can move forward to approved main, but it cannot invent a merge or overwrite divergent history.</p><p><strong>Release:</strong> Composer installs locked packages, Laravel applies only pending migrations, and rsync publishes public assets.</p><p><strong>Verification:</strong> caches are rebuilt, maintenance mode ends and curl confirms the health endpoint responds successfully.</p></div>
+          <div class="callout success"><p>The script checks the environment, permits only a clean <code>main</code> branch, requires a fast-forward, enables maintenance mode, installs locked dependencies, runs pending migrations, publishes assets, rebuilds caches and performs a health check.</p></div>
+          <div class="callout warning"><p>Use <code>composer install</code>, not <code>composer update</code>. Never put <code>migrate:fresh</code>, <code>db:wipe</code>, <code>migrate:reset</code> or automatic destructive rollback commands in the deployment script.</p></div>
+        </section>
+
+        <section class="doc-section" id="release">
+          <span class="step-label">18</span><h2>Create, bootstrap and run a release</h2>
+          <h3>Create the deployment feature</h3>
+          <p class="code-intro"><code>bash -n</code> checks the script's syntax without running the deployment. <code>git diff --check</code> catches whitespace errors before review.</p>
+          <div class="code-box"><pre><code>git switch develop
+git pull --ff-only origin develop
+git switch -c feature/git-deployment-workflow
+bash -n deploy/shared-hosting-deploy.sh
+npm run build
+git status --short
+git diff --check
+git diff --stat
+git add .
+git commit -m "chore: add shared-hosting Git deployment workflow"
+git push -u origin feature/git-deployment-workflow</code></pre></div>
+          <p>Merge <code>feature/git-deployment-workflow → develop</code>, then <code>develop → main</code>.</p>
+          <h3>First bootstrap deployment</h3>
+          <p class="code-intro">The first release is special because the deployment script is not on the server yet. Inspect the incoming commits and files before performing the one controlled fast-forward.</p>
+          <div class="code-box"><pre><code>cd &lt;APP_DIR&gt;
+git fetch origin main
+git --no-pager log --oneline HEAD..origin/main
+git --no-pager diff --stat HEAD..origin/main
+
+git merge --ff-only origin/main
+git status --short
+ls -la deploy/shared-hosting-deploy.sh
+bash -n deploy/shared-hosting-deploy.sh
+./deploy/shared-hosting-deploy.sh</code></pre></div>
+          <h3>Every routine deployment after that</h3>
+          <p class="code-intro">After bootstrap, the operator needs only three commands: connect, enter the private application directory and run the guarded script.</p>
+          <div class="code-box"><pre><code>ssh &lt;SSH_USER&gt;@&lt;SSH_HOST&gt; -p &lt;SSH_PORT&gt;
+cd &lt;APP_DIR&gt;
+./deploy/shared-hosting-deploy.sh</code></pre></div>
+          <div class="callout"><p>Do not run <code>git pull</code> first. Fetching and applying <code>origin/main</code> is the deployment script's responsibility.</p></div>
+        </section>
+
+        <section class="doc-section" id="protected">
+          <span class="step-label">21</span><h2>Files that automatic deployment must preserve</h2>
+          <ul><li><code>&lt;APP_DIR&gt;/.env</code> and <code>&lt;APP_DIR&gt;/storage</code></li><li>Production database contents and user uploads</li><li><code>&lt;PUBLIC_DIR&gt;/index.php</code> and <code>&lt;PUBLIC_DIR&gt;/.htaccess</code></li><li><code>&lt;PUBLIC_DIR&gt;/storage</code> symbolic link</li><li>Hosting-specific configuration</li></ul>
+          <p>The document-root entry files may contain hosting-specific absolute paths. The rsync exclusions protect them.</p>
+        </section>
+
+        <section class="doc-section" id="errors">
+          <span class="step-label">22</span><h2>Common deployment errors</h2>
+          <h3>Not a Git repository</h3><p>Initialise Git, add the remote, authenticate, fetch main and use <code>git reset --mixed origin/main</code>.</p>
+          <h3>GitHub asks for an HTTPS username</h3><p>Cancel with Ctrl+C, create a read-only deploy key and switch origin to SSH.</p>
+          <h3>Local changes block branch switching</h3><p>Identify the exact file and use a path-specific stash. Do not discard unrelated work.</p>
+          <h3>The terminal shows (END)</h3><div class="code-box"><pre><code># Press q, or avoid the pager:
+git --no-pager diff --stat develop main
+export GIT_PAGER=cat</code></pre></div>
+          <h3>Production history has diverged</h3><div class="code-box"><pre><code>git status
+git branch -vv
+git --no-pager log --oneline --graph --decorate --all -30</code></pre></div>
+          <p class="code-intro">These diagnostic commands show changed files, branch tracking and a visual history graph. They help you understand the divergence without altering it.</p>
+          <p>Resolve the history through the repository workflow. Never use <code>git reset --hard</code> as an automatic repair.</p>
+          <h3>Maintenance mode remains enabled</h3><div class="code-box"><pre><code>cd &lt;APP_DIR&gt;
+&lt;PHP_BIN&gt; artisan up</code></pre></div>
+          <h3>The health check fails</h3><div class="code-box"><pre><code>curl -i &lt;PRODUCTION_URL&gt;/health
+tail -n 100 &lt;APP_DIR&gt;/storage/logs/laravel.log
+git status
+git log -1 --oneline</code></pre></div>
+        </section>
+
+        <section class="doc-section" id="rollback">
+          <span class="step-label">23</span><h2>Use a reviewed, forward-safe rollback</h2>
+          <ol><li>Identify the faulty pull request or commit.</li><li>Create a revert commit locally or through GitHub.</li><li>Review and merge the revert into develop, then main.</li><li>Run the deployment script again.</li></ol>
+          <div class="code-box"><pre><code>git switch develop
+git pull --ff-only origin develop
+git switch -c bugfix/revert-faulty-release
+git revert &lt;FAULTY_COMMIT&gt;
+git push -u origin bugfix/revert-faulty-release</code></pre></div>
+          <div class="learning-note"><b>Revert is safer than erasing history</b><p><code>git revert</code> creates a new commit that reverses an older commit. The original history remains visible, reviewable and recoverable.</p></div>
+          <div class="callout warning"><p>Rolling application code backward does not reverse a database migration safely. Prefer a new corrective migration and verify a database backup before high-risk schema releases.</p></div>
+        </section>
+
+        <section class="doc-section" id="security">
+          <span class="step-label">24</span><h2>Security controls</h2>
+          <ul><li>Use a repository-scoped, read-only deploy key and protect it with <code>chmod 600</code>.</li><li>Keep <code>.env</code>, environment backups and deployment scripts outside the public document root.</li><li>Never log credentials, APP_KEY values, payment secrets, card data or private keys.</li><li>Deploy only main—never develop, feature or bug-fix branches.</li><li>Do not make unreviewed production source-code edits through FTP or SSH.</li></ul>
+        </section>
+
+        <section class="doc-section" id="checklist">
+          <span class="step-label">25</span><h2>Routine release checklist</h2>
+          <h3>Local development</h3><ul class="checklist"><li>Started from the latest origin/develop</li><li>Used a dedicated feature or bug-fix branch</li><li>Reviewed git status and git diff</li><li>Built and committed frontend assets when required</li><li>Pushed a descriptive commit to GitHub</li></ul>
+          <h3>GitHub review</h3><ul class="checklist"><li>Merged the work branch into develop</li><li>Reviewed the integrated develop version</li><li>Merged develop into main</li><li>Confirmed main contains only approved production work</li></ul>
+          <h3>Production and verification</h3><ul class="checklist"><li>Ran the script from the private application directory</li><li>Fast-forward, Composer, migrations, assets and caches completed</li><li>Maintenance mode was disabled and the health check passed</li><li>Homepage, authentication, navigation and primary workflows work</li><li>No new production errors appear in the Laravel log</li></ul>
+        </section>
+
+        <section class="doc-section" id="quick-reference">
+          <span class="step-label">26</span><h2>Command quick reference</h2>
+          <div class="code-box"><pre><code># Start work
+git switch develop
+git pull --ff-only origin develop
+git switch -c feature/&lt;NAME&gt;
+
+# Build and publish
+npm run build
+git add .
+git commit -m "feat: describe the change"
+git push -u origin feature/&lt;NAME&gt;
+
+# Promote on GitHub
+feature/&lt;NAME&gt; -&gt; develop
+develop -&gt; main
+
+# Deploy
+ssh &lt;SSH_USER&gt;@&lt;SSH_HOST&gt; -p &lt;SSH_PORT&gt;
+cd &lt;APP_DIR&gt;
+./deploy/shared-hosting-deploy.sh
+
+# Inspect and verify
+git branch -vv
+git log -1 --oneline
+curl -sS -o /dev/null -w "Homepage: %{http_code}\n" &lt;PRODUCTION_URL&gt;/
+curl -sS -o /dev/null -w "Health: %{http_code}\n" &lt;PRODUCTION_URL&gt;/health</code></pre></div>
+        </section>
+
+        <section class="doc-section process-map-section" id="process-map">
+          <span class="step-label">BA</span><h2>Change-to-production process map</h2>
+          <p>This process model translates the technical deployment workflow into a controlled business process. It identifies activities, decision gates, rework paths and the evidence required to move a change safely into production.</p>
+
+          <details class="process-accordion">
+            <summary><span><b>Open the complete process map</b><small>Business need → analysis → development → governance → production</small></span><i aria-hidden="true">+</i></summary>
+            <div class="process-accordion-body">
+              <div class="classic-legend" aria-label="Process map legend">
+                <span><i class="mini-shape terminal"></i>Start / finish</span>
+                <span><i class="mini-shape activity"></i>Task / activity</span>
+                <span><i class="mini-shape decision"></i>Decision</span>
+                <span><i class="mini-flow">→</i>Process flow</span>
+              </div>
+
+              <div class="flowchart-stage" aria-label="Git-based Laravel deployment process">
+                <svg class="flowchart-svg" viewBox="0 0 900 1940" role="img" aria-labelledby="flow-title flow-description">
+                  <title id="flow-title">Controlled change-to-production process</title>
+                  <desc id="flow-description">A connected process flow from business change request through analysis, development, pull request approval, deployment and production verification. Failed decisions return to an earlier activity.</desc>
+                  <defs>
+                    <marker id="flow-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker>
+                    <marker id="return-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" /></marker>
+                    <filter id="flow-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="7" stdDeviation="8" flood-opacity=".28" /></filter>
+                  </defs>
+
+                  <g class="connectors">
+                    <path d="M350 120 V170" /><path d="M350 260 V300" />
+                    <path d="M350 460 V515" /><path d="M350 605 V650" /><path d="M350 740 V775" />
+                    <path d="M350 935 V990" /><path d="M350 1080 V1125" /><path d="M350 1215 V1250" />
+                    <path d="M350 1410 V1465" /><path d="M350 1575 V1610" /><path d="M350 1770 V1830" />
+                    <path d="M470 380 H615" /><path d="M835 380 H860 V215 H540" class="return-line" />
+                    <path d="M470 855 H615" /><path d="M835 855 H872 V695 H540" class="return-line" />
+                    <path d="M470 1330 H615" /><path d="M835 1330 H882 V1035 H540" class="return-line" />
+                    <path d="M470 1690 H615" /><path d="M835 1690 H890 V1520 H555" class="return-line" />
+                  </g>
+
+                  <g class="connector-labels">
+                    <text x="366" y="151">Business need</text><text x="366" y="286">Requirements baseline</text>
+                    <text class="yes" x="365" y="495">YES</text><text class="no" x="520" y="364">NO</text>
+                    <text x="366" y="634">Implement change</text><text class="yes" x="365" y="970">YES</text><text class="no" x="520" y="839">NO</text>
+                    <text x="366" y="1110">Integrated version</text><text class="yes" x="365" y="1450">YES</text><text class="no" x="520" y="1314">NO</text>
+                    <text x="366" y="1598">Production verification</text><text class="yes" x="365" y="1810">YES</text><text class="no" x="520" y="1674">NO</text>
+                  </g>
+
+                  <g class="flow-node terminal-node" filter="url(#flow-shadow)"><ellipse cx="350" cy="75" rx="175" ry="45" /><text x="350" y="69"><tspan class="node-title">START</tspan><tspan x="350" dy="22">Business change requested</tspan></text></g>
+                  <g class="flow-node activity-node" filter="url(#flow-shadow)"><rect x="160" y="170" width="380" height="90" /><text x="350" y="204"><tspan class="node-title">Analyse Change</tspan><tspan x="350" dy="22">Define scope, value, stakeholders and requirements</tspan><tspan x="350" dy="18">Document risk and acceptance criteria</tspan></text></g>
+                  <g class="flow-node decision-node" filter="url(#flow-shadow)"><polygon points="350,300 470,380 350,460 230,380" /><text x="350" y="372"><tspan class="node-title">Ready for development?</tspan><tspan x="350" dy="22">Clear, feasible and agreed?</tspan></text></g>
+                  <g class="flow-node activity-node side-node"><rect x="615" y="335" width="220" height="90" /><text x="725" y="370"><tspan class="node-title">Clarify Requirements</tspan><tspan x="725" dy="22">Resolve gaps and return</tspan><tspan x="725" dy="18">for business review</tspan></text></g>
+
+                  <g class="flow-node activity-node" filter="url(#flow-shadow)"><rect x="160" y="515" width="380" height="90" /><text x="350" y="549"><tspan class="node-title">Create Feature or Bug-fix Branch</tspan><tspan x="350" dy="22">Isolate approved work from integrated</tspan><tspan x="350" dy="18">and production code</tspan></text></g>
+                  <g class="flow-node activity-node" filter="url(#flow-shadow)"><rect x="160" y="650" width="380" height="90" /><text x="350" y="684"><tspan class="node-title">Build and Validate</tspan><tspan x="350" dy="22">Implement, inspect differences and compile assets</tspan><tspan x="350" dy="18">Validate against acceptance criteria</tspan></text></g>
+                  <g class="flow-node decision-node" filter="url(#flow-shadow)"><polygon points="350,775 470,855 350,935 230,855" /><text x="350" y="847"><tspan class="node-title">Acceptance criteria met?</tspan><tspan x="350" dy="22">Expected behaviour demonstrated?</tspan></text></g>
+                  <g class="flow-node activity-node side-node"><rect x="615" y="810" width="220" height="90" /><text x="725" y="845"><tspan class="node-title">Correct the Change</tspan><tspan x="725" dy="22">Return to development</tspan><tspan x="725" dy="18">with findings</tspan></text></g>
+
+                  <g class="flow-node activity-node control-node" filter="url(#flow-shadow)"><rect x="160" y="990" width="380" height="90" /><text x="350" y="1024"><tspan class="node-title">Pull Request into develop</tspan><tspan x="350" dy="22">Review the individual change, evidence</tspan><tspan x="350" dy="18">and integration impact</tspan></text></g>
+                  <g class="flow-node activity-node control-node" filter="url(#flow-shadow)"><rect x="160" y="1125" width="380" height="90" /><text x="350" y="1159"><tspan class="node-title">Pull Request into main</tspan><tspan x="350" dy="22">Review the complete release</tspan><tspan x="350" dy="18">for production readiness</tspan></text></g>
+                  <g class="flow-node decision-node" filter="url(#flow-shadow)"><polygon points="350,1250 470,1330 350,1410 230,1330" /><text x="350" y="1322"><tspan class="node-title">Release approved?</tspan><tspan x="350" dy="22">Risk accepted and controls satisfied?</tspan></text></g>
+                  <g class="flow-node activity-node side-node"><rect x="615" y="1285" width="220" height="90" /><text x="725" y="1320"><tspan class="node-title">Return to develop</tspan><tspan x="725" dy="22">Record feedback and prepare</tspan><tspan x="725" dy="18">a corrected release</tspan></text></g>
+
+                  <g class="flow-node activity-node" filter="url(#flow-shadow)"><rect x="145" y="1465" width="410" height="110" /><text x="350" y="1502"><tspan class="node-title">Run Guarded Deployment Script</tspan><tspan x="350" dy="22">Fetch main, validate fast-forward and install dependencies</tspan><tspan x="350" dy="18">Migrate, publish assets and rebuild caches</tspan></text></g>
+                  <g class="flow-node decision-node" filter="url(#flow-shadow)"><polygon points="350,1610 470,1690 350,1770 230,1690" /><text x="350" y="1682"><tspan class="node-title">Health check passed?</tspan><tspan x="350" dy="22">Application and key journeys working?</tspan></text></g>
+                  <g class="flow-node activity-node side-node warning-node"><rect x="615" y="1645" width="220" height="90" /><text x="725" y="1680"><tspan class="node-title">Restore and Diagnose</tspan><tspan x="725" dy="22">Restore availability and raise</tspan><tspan x="725" dy="18">a reviewed corrective change</tspan></text></g>
+                  <g class="flow-node terminal-node end-node" filter="url(#flow-shadow)"><ellipse cx="350" cy="1875" rx="175" ry="45" /><text x="350" y="1869"><tspan class="node-title">END</tspan><tspan x="350" dy="22">Release accepted and revision recorded</tspan></text></g>
+                </svg>
+              </div>
+            </div>
+          </details>
+
+          <div class="ba-evidence-grid" aria-label="Business Analysis evidence demonstrated by the process map">
+            <article><b>Process modelling</b><p>Standard flowchart shapes distinguish events, activities, decisions and process flow.</p></article>
+            <article><b>Decision governance</b><p>Four quality gates define approval criteria and controlled rework paths.</p></article>
+            <article><b>Requirements traceability</b><p>The original business need and acceptance criteria remain connected to validation and release.</p></article>
+            <article><b>Risk and controls</b><p>Peer review, branch promotion, guarded deployment and health checks reduce operational risk.</p></article>
+          </div>
+        </section>
+
+        <section class="doc-section" id="rule">
+          <span class="step-label">27</span><h2>Final operating rule</h2>
+          <div class="callout success"><p><strong>All application changes begin locally, move through a feature or bug-fix pull request into develop, then through a release pull request into main. Production accepts only guarded, fast-forward updates from origin/main.</strong></p></div>
+          <p>The server stores environment-specific configuration and persistent runtime data; it is not a development workstation. This separation keeps releases reviewable, repeatable and recoverable.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer"><div class="wrap footer-inner"><p>© <span id="year"></span> Boitumelo Malinga</p><a href="#top">Back to top ↑</a></div></footer>
+  <script src="../js/main.js"></script>
+  <script src="../js/git-deployment.js"></script>
+</body>
+</html>
