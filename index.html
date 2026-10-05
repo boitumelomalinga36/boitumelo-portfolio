@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
+    <div class="page-progress" aria-hidden="true"><span></span></div>
     <div class="cursor-glow"></div>
     <header class="topbar" id="top">
       <nav class="nav wrap">
@@ -74,9 +75,12 @@
         <div class="wrap about-layout">
           <div class="section-title reveal">
             <p class="small-label">About Me</p>
-            <h2>Business thinking with technical execution.</h2>
+            <h2>Business thinking. Technical execution.</h2>
+            <button class="section-toggle" type="button" aria-expanded="false" aria-controls="about-details">
+              <span>Read my story</span><b aria-hidden="true">+</b>
+            </button>
           </div>
-          <div class="about-panel reveal">
+          <div class="about-panel reveal expandable-content is-condensed" id="about-details">
             <p>
               I am currently completing a Postgraduate Diploma in Data
               Analytics, expanding my ability to use data, business intelligence
@@ -223,18 +227,45 @@
         <div class="wrap">
           <div class="section-head reveal">
             <p class="small-label">Business Analyst Portfolio</p>
-            <h2>
-              Business analysis projects with requirements, process models and
-              solution artefacts.
-            </h2>
+            <h2>From business need to practical solution.</h2>
             <p>
-              These projects demonstrate the full BA lifecycle: business problem
-              analysis, stakeholder engagement, requirements definition, process
-              improvement, user stories, use cases, testing and solution design.
+              See how I turn business needs into clear requirements, process
+              models and testable solutions.
             </p>
+            <button class="section-toggle" type="button" aria-expanded="false" aria-controls="ba-project-list">
+              <span>Explore all BA projects</span><b aria-hidden="true">+</b>
+            </button>
           </div>
 
-          <div class="ba-project-grid">
+          <div class="ba-project-grid expandable-grid is-condensed" id="ba-project-list">
+            <a
+              class="ba-project-card featured reveal"
+              href="projects/git-deployment-workflow.html"
+            >
+              <div class="ba-card-media">
+                <img
+                  src="images/git-deployment.svg"
+                  alt="Git-based Laravel deployment workflow documentation"
+                />
+                <span>New Documentation</span>
+              </div>
+              <div class="ba-card-body">
+                <p class="small-label">Git • GitHub • Laravel • Deployment</p>
+                <h3>Git-Based Laravel Deployment Workflow</h3>
+                <p>
+                  A practical, step-by-step guide for replacing manual FTP
+                  releases with reviewed Git branches, GitHub pull requests and
+                  a guarded shared-hosting deployment script.
+                </p>
+                <div class="artefact-pills">
+                  <span>Branch Strategy</span><span>Deploy Keys</span
+                  ><span>Server Setup</span><span>Bash Script</span
+                  ><span>Rollback</span><span>Checklist</span>
+                </div>
+                <strong>View full deployment documentation →</strong>
+              </div>
+            </a>
+
             <a
               class="ba-project-card featured reveal"
               href="projects/stokvel-management-system.html"
@@ -326,12 +357,13 @@
         <div class="wrap">
           <div class="section-head reveal">
             <p class="small-label">Selected Projects</p>
-            <h2>
-              Projects with clear business problems and technology solutions.
-            </h2>
+            <h2>Technology built around real business needs.</h2>
+            <button class="section-toggle" type="button" aria-expanded="false" aria-controls="development-project-list">
+              <span>Explore all projects</span><b aria-hidden="true">+</b>
+            </button>
           </div>
 
-          <div class="project-grid">
+          <div class="project-grid expandable-grid is-condensed" id="development-project-list">
             <a
               class="project-card reveal"
               href="https://github.com/boitumelomalinga36/laravel-payfast-checkout"
