@@ -10,3 +10,4 @@ Main files:
 - css/styles.css
 - js/main.js
 - images/about-photo.jpg
+Deployment refresh
