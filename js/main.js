@@ -15,6 +15,12 @@ if (toggle && links) {
   });
 }
 
+const mainContent = document.querySelector('main');
+['about', 'ba-projects', 'journey', 'projects', 'live-projects', 'skills', 'contact'].forEach(id => {
+  const section = document.getElementById(id);
+  if (mainContent && section) mainContent.appendChild(section);
+});
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
